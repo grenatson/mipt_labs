@@ -1,3 +1,4 @@
+from array import array
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -17,13 +18,11 @@ def covariance(array_1, array_2):
     return np.mean(array_1 * array_2) - np.mean(array_1) * np.mean(array_2)
 
 class LeastSquares:
-
-    xs = np.array([])
-    ys = np.array([])
-
     def __init__(self, x_data, y_data, pass_through_zero = False):
         if len(x_data) != len(y_data):
             raise Exception('Arrays must have the same lenght!')
+        if (type(x_data) != type(np.array([])) or type(y_data) != type(np.array([]))):
+            raise Exception('LeastSquares class works only with NumPy arrays!')
         self.xs = x_data
         self.ys = y_data
         self.zero_pass = pass_through_zero
@@ -40,8 +39,8 @@ class LeastSquares:
     
     def __repr__(self):
         if self.zero_pass:
-            return "y = kx: k = {} \u00b1 {}".format(self.k, self.sigma_k)
-        return "y = kx + b: k = {} \u00b1 {}, b = {} \u00b1 {}".format(self.k, self.sigma_k, self.b, self.sigma_b)
+            return "y = kx: k = {:.4f} \u00b1 {:.4f}".format(self.k, self.sigma_k)
+        return "y = kx + b: k = {:.4f} \u00b1 {:.4f}, b = {:.4f} \u00b1 {:.4f}".format(self.k, self.sigma_k, self.b, self.sigma_b)
 
     def add_to_axes(self, ax, start = None, end = None, param_dict = {'linewidth': 1}):
         if start == None:
