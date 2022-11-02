@@ -115,7 +115,7 @@ def process_deflect(ax, data, data_flipped, title, param_dict={'marker': '^', 'c
     ax.scatter(data[0], data[1], label="неперевёрнутая", **param_dict)
     ax.scatter(data_flipped[0], data_flipped[1], label="перевёрнутая", **flipped_param_dict)
     mnk = LeastSquares(np.concatenate((data[0], data_flipped[0])), np.concatenate((data[1], data_flipped[1])), True)
-    mnk.add_to_axes(ax, param_dict={'lw': 1, 'ls': '--', 'c': 'r'})
+    mnk.add_to_axes(ax, start=0, param_dict={'lw': 1, 'ls': '--', 'c': 'r'})
     ax.text(0.70, 0.08, "Результат аппроксимации:\nk = {:.2e} \u00b1 {:.2e}".format(mnk.k, mnk.sigma_k),
             ha='center', transform=ax.transAxes,
             bbox={'boxstyle': 'square', 'facecolor': 'g', 'alpha': 0.4, 'pad': 0.6})
