@@ -37,6 +37,7 @@ class LeastSquares:
             self.sigma_k = np.sqrt((variance(self.ys) / variance(self.xs) - self.k ** 2) / (len(self.xs) - 2))
             self.b = np.mean(self.ys) - self.k * np.mean(self.xs)
             self.sigma_b = self.sigma_k * np.sqrt(np.mean(self.xs ** 2))
+            self.epsilon_b = self.sigma_b / self.b
         self.epsilon_k = self.sigma_k / self.k
     
     def __repr__(self):
